@@ -1,3 +1,5 @@
+# test program for the concept of static method and class method
+
 class parent(object):
 	@staticmethod
 	def static_method(x):

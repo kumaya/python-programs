@@ -1,3 +1,5 @@
+# Implement abstract class in python using abc module
+
 import abc
 
 class AbsBaseClass(object):

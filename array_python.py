@@ -40,12 +40,3 @@ for i,j  in enumerate(inp_mat):
 		if l > max_val:
 			max_val = l
 print "Maximum size square is %d" %(max_val)
-
-print "#"*80
-
-n = 4
-m = str(n)
-if len(m)%2 == 0:
-	# sum = int(m[1:len(n)/2]) + int(n[])
-	pass
-print m[(len(m)/2):], m[:(-len(m)/2)], m[(len(m)/2)+1:], m[:(-len(m)/2)+1]

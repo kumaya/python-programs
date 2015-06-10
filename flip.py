@@ -79,6 +79,7 @@ for i in range(1,5): #More than 2 lines will result in 0 score. Do not leave a b
     print str(i)*i
 
 print "$"*80
+# Implementation of complex numbers in python
 x = [-2, 1]
 y = [2, -1]
 A = complex(x[0], x[1])
