@@ -1,4 +1,4 @@
-# Program to find greatest common divisor
+# Program to find greatest common divisor using Euclid's algorithm
 def GCD(a,b):
     a = abs(a)
     b = abs(b)
