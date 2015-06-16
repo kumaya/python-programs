@@ -70,5 +70,5 @@ print ll_obj.head.get_next()
 print "*"*80
 print ll_obj.size()
 
-ll_obj.delete('kuama')
-print ll_obj.size()
+# ll_obj.delete('kuama')
+# print ll_obj.size()
