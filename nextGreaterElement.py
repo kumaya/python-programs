@@ -3,23 +3,15 @@
 #Elements for which no greater element exist, consider next greater element as -1.
 
 def nextGreaterElement(inp_arr):
-	out_list = []
-	len_inp = len(inp_arr)
-	for i in xrange(1, len_inp):
-		count = i
-		out_list.append(inp_arr[i-1])
-		next = inp_arr[i]
-		while len(out_list) > 0:
-			popped_elem = out_list.pop()
-			if next > popped_elem:
-				print str(next) + " is next greater element of " + str(popped_elem)
-			else:
-				if count < len_inp:
-					out_list.append(popped_elem)
-					next = inp_arr[count]
-					count += 1
-				else:
-					print "-1 is next greater element of " + str(popped_elem)
+	for i in xrange(len(inp_arr)-1):
+		for j in xrange(i, len(inp_arr)):
+			flag = False
+			if inp_arr[j] > inp_arr[i]:
+				flag = True
+		if flag:
+			print "%s is the next greater element of %s" % (inp_arr[j], inp_arr[i])
+		else:
+			print "-1 is the next greater element of %s" %(inp_arr[i])
 
 
 inp_arr = [4,5,2,25]
