@@ -23,6 +23,7 @@ def reverseParentTree(q, t):
 			q += t[node]
 	reverseParentTree(q, t)
 	print " ".join(ret)
+	
 
 # N = 5
 # treeNode = ['-1', '0', '0', '2', '1']
@@ -36,6 +37,6 @@ for index,val in enumerate(treeNode):
 	else:
 		parent[val] = [str(index)]
 
-print parent
+# print parent
 
 reverseParentTree(parent['-1'], parent)
