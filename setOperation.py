@@ -13,3 +13,4 @@ print list(set(l1).difference(l2))
 
 # Return an array containing unique elements of both array
 print list(set(l2).difference(l1).union(set(l1).difference(l2)))
+
