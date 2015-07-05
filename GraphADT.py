@@ -13,7 +13,7 @@ BFS (Breadth-First-Search) and DFS (Depth-First-Search)
 '''
 
 # def depth_first_search(graph, start, path=[]):
-# 	'''Recursice dfs from start node'''
+# 	'''Recursive dfs from start node'''
 # 	path.append(start)
 # 	for node in graph[start]:
 # 		if not node in path:
@@ -21,8 +21,9 @@ BFS (Breadth-First-Search) and DFS (Depth-First-Search)
 # 			depth_first_search(graph, node, path)
 # 	return path
 
-def depth_first_search(graph, start, path=[]):
-	'''Recursice dfs from start node'''
+def depth_first_search(graph, start):
+	'''Iterative dfs from start node'''
+	path=[]
 	q = [start]
 	while q:
 		v = q.pop()
@@ -32,8 +33,9 @@ def depth_first_search(graph, start, path=[]):
 			q += graph[v]
 	return path
 
-def breadth_first_search(graph, start, path=[]):
+def breadth_first_search(graph, start):
 	'''Iterative bfs from start node'''
+	path=[]
 	q = [start]
 	while q:
 		v = q.pop(0)
