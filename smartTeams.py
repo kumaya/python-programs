@@ -9,9 +9,9 @@ a = 3
 b = 1
 c = 2
 stuff = [a,b,c]
-for L in xrange(a):
+for L in xrange(len(stuff)+1):
   for subset in itertools.combinations(stuff, L):
-    print(subset)
+    print subset
 
 print "*"*80
 inp = map(int, raw_input().split())
