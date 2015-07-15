@@ -2,6 +2,11 @@ from bowlingGameApplication.gameEngine.Game import Game
 
 
 class BowlingGame(Game):
+    """ Implementation class for bowling game.
+    Game is played with number of pins hit per round.
+    Player with maximum scores wins the game.
+    """
+
     _rolls = [0]*21
     _currentRoll = 0
 
@@ -15,10 +20,9 @@ class BowlingGame(Game):
             raise
 
     def score(self):
-        '''Calculates the score of a game
+        """ Calculates the score of a game
         :return: Total score
-        '''
-
+        """
         score = 0
         frames = 10
         frame_index = 0
@@ -42,14 +46,22 @@ class BowlingGame(Game):
             raise
 
     def _is_spare(self, frame_index):
-        '''Check if current frame is spare. (Spare means sum of two throws in same frame is 10)
+        """ Check if current frame is spare. (Spare means sum of two throws in same frame is 10)
         :param frame_index: Current throw in a frame
         :return: Boolean
-        '''
-        return  self._rolls[frame_index] + self._rolls[frame_index + 1] == 10
+        """
+        return self._rolls[frame_index] + self._rolls[frame_index + 1] == 10
 
     def _is_strike(self, frame_index):
-        return  self._rolls[frame_index] == 10
+        """ Strike if player pins all 10 balls in a single throw
+        :param frame_index: current frame in a game. A game has total of 10 frames
+        :return: Boolean
+        """
+        return self._rolls[frame_index] == 10
 
     def _strike_bonus(self, frame_index):
-        return  self._rolls[frame_index + 1] + self._rolls[frame_index + 2]
+        """ When strike Bonus is sum of score of next frame
+        :param frame_index: current frame
+        :return: Bonus value
+        """
+        return self._rolls[frame_index + 1] + self._rolls[frame_index + 2]
