@@ -3,8 +3,8 @@ from bowlingGameApplication.gameEngine.BowlingGame import BowlingGame
 
 
 class TestBowlingGame(unittest.TestCase):
-    ''' UnitTests case for Bowling Game
-    '''
+    """ UnitTests case for Bowling Game
+    """
 
     def setUp(self):
         self.game = BowlingGame()
