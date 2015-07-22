@@ -12,6 +12,6 @@ class UserFactory(object):
 
     def get_players(self, num_of_players):
         all_players = []
-        for player in num_of_players:
-            all_players.append(player)
+        for player in range(num_of_players):
+            all_players.append(self.get_user())
         return all_players

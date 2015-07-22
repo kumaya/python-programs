@@ -7,8 +7,9 @@ class BowlingGame(Game):
     Player with maximum scores wins the game.
     """
 
-    _rolls = [0]*21
-    _currentRoll = 0
+    def __init__(self):
+        self._rolls = [0]*21
+        self._currentRoll = 0
 
     def roll(self, pins):
         try:
