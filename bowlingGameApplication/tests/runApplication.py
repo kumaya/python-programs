@@ -21,15 +21,15 @@ class PlayGame(object):
         print("Winner is User %d with score of %d" % (user, max_score))
 
     def run(self, games, users):
-        for i in range(len(users)):
+        for i in range(1, len(users)):
             j = 1
             while j <= 21:
                 val = random.randint(1, 10)
+                if j%2 == 0:
+                    val = 10 - val
+                print ("User %d scored %d" % (i, val))
                 if val == 10:
                     j += 1
-                if j%2 != 0 and val != 10:
-                    val = 10 - val
-                print ("User %d scored %d %d" % (i, val, j))
                 games[i].roll(val)
                 j += 1
         for i in range(len(users)):
