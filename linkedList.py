@@ -35,6 +35,16 @@ class LinkedList(object):
 		new_node.set_next(self.head)
 		self.head = new_node
 
+	def insert_at_end(self, data):
+		new_node = Node(data)
+		current = self.head
+		previous = None
+		while current:
+			previous = current
+			current = current.get_next()
+		previous.set_next(new_node)
+		new_node.set_next(None)
+
 	def delete(self, data):
 		current = self.head
 		previous = None
@@ -54,21 +64,12 @@ class LinkedList(object):
 
 
 ll_obj = LinkedList()
-
 ll_obj.insert('maya')
-print ll_obj.head.get_data()
-print ll_obj.head.get_next()
-
 ll_obj.insert('kuma')
-print ll_obj.head.get_data()
-print ll_obj.head.get_next()
-
-ll_obj.insert('kumar')
-print ll_obj.head.get_data()
-print ll_obj.head.get_next()
-
-print "*"*80
-print ll_obj.size()
-
-# ll_obj.delete('kuama')
-# print ll_obj.size()
+ll_obj.insert('deep')
+ll_obj.insert('raj')
+ll_obj.insert_at_end('yaay')
+curr = ll_obj.head
+while curr:
+    print curr.get_data(), curr.get_next()
+    curr = curr.get_next()

@@ -1,14 +1,3 @@
-# fibonacci series
-def fib(n):
-	if n == 1:
-		return 1
-	elif n == 0:
-		return 0
-	else:
-		return fib(n-1) + fib(n-2)
-
-print "fibinacci series value : {}".format(fib(6)) # 0:1, 1:1, 2:2, 3:3, 4:5, 5:8, 6:13
-
 a = 233
 aa = str(233)
 aaa = aa[2:]
