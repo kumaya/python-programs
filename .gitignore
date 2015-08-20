@@ -2,5 +2,6 @@
 *.pyc
 *.sqlite
 *.swp
+*.idea
 AUTHORS
 Authors
