@@ -62,14 +62,20 @@ class LinkedList(object):
 		else:
 			previous.set_next(current.get_next())
 
+	def printLinkedList(self, head):
+		current = head
+		print "Linked List: ",
+		while current:
+			print current.get_data(),
+			print "-->",
+			current = current.get_next()
+		print "X"
 
-ll_obj = LinkedList()
-ll_obj.insert('maya')
-ll_obj.insert('kuma')
-ll_obj.insert('deep')
-ll_obj.insert('raj')
-ll_obj.insert_at_end('yaay')
-curr = ll_obj.head
-while curr:
-    print curr.get_data(), curr.get_next()
-    curr = curr.get_next()
+if __name__ == "__main__":
+	ll_obj = LinkedList()
+	ll_obj.insert(1)
+	ll_obj.insert(2)
+	ll_obj.insert(3)
+	ll_obj.insert(4)
+	ll_obj.insert_at_end(5)
+	ll_obj.printLinkedList(ll_obj.head)
