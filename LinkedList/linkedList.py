@@ -39,11 +39,15 @@ class LinkedList(object):
 		new_node = Node(data)
 		current = self.head
 		previous = None
-		while current:
-			previous = current
-			current = current.get_next()
-		previous.set_next(new_node)
-		new_node.set_next(None)
+		if not current:
+			new_node.set_next(self.head)
+			self.head = new_node
+		else:
+			while current:
+				previous = current
+				current = current.get_next()
+			previous.set_next(new_node)
+			new_node.set_next(None)
 
 	def delete(self, data):
 		current = self.head
