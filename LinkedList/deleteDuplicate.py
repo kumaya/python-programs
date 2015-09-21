@@ -6,7 +6,7 @@ from linkedList import LinkedList
 
 
 class RemoveDuplicatesFromSorted(object):
-    def __init__(self, head):
+    def __init__(self, head=None):
         self.head = head
 
     def traverse_and_delete(self):
@@ -28,6 +28,18 @@ class RemoveDuplicatesFromSorted(object):
                 current = current.get_next()
         new_list.insert_at_end(current.get_data())
         return new_list
+
+class Remove(object):
+    def __init__(self, head=None):
+        self.head = head
+
+    def delete(self):
+        current = self.head
+        while current.get_next():
+            if current.get_data() == current.get_next().get_data():
+                current = current.get_next().get_next()
+            else:
+                current = current.get_next()
 
 
 if __name__ == "__main__":
