@@ -29,6 +29,7 @@ class RemoveDuplicatesFromSorted(object):
         new_list.insert_at_end(current.get_data())
         return new_list
 
+
 class Remove(object):
     def __init__(self, head=None):
         self.head = head

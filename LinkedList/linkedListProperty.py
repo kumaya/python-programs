@@ -1,19 +1,21 @@
-# Linked list implementation in python
+# Linked list using property as setter and getter
 
 
 class Node(object):
-    # Basic structure of a node in linked list
-    def __init__(self, data=None, next_node=None):
-        self.data = data
-        self.next_node = next_node
+    @property
+    def data(self):
+        return self.va
 
-    def get_data(self):
-        return self.data
+    @data.setter
+    def data(self, data=None):
+        self.va = data
 
-    def get_next(self):
+    @property
+    def node(self):
         return self.next_node
 
-    def set_next(self, new_next):
+    @node.setter
+    def node(self, new_next):
         self.next_node = new_next
 
 
@@ -21,61 +23,63 @@ class LinkedList(object):
     def __init__(self, head=None):
         self.head = head
 
-    def isEmpty(self):
-        return self.head is None
+    def  isEmpty(self):
+        return self.head == None
 
     def size(self):
         current = self.head
         count = 0
         while current:
             count += 1
-            current = current.get_next()
+            current = current.node
         return count
 
-    def insert(self, data):
-        new_node = Node(data)
-        new_node.set_next(self.head)
+    def insert(self, val):
+        new_node = Node()
+        new_node.data = val
+        new_node.node = self.head
         self.head = new_node
 
     def insert_at_end(self, data):
-        new_node = Node(data)
+        new_node = Node()
+        new_node.data = data
         current = self.head
         previous = None
         if not current:
-            new_node.set_next(self.head)
+            new_node.node = self.head
             self.head = new_node
         else:
             while current:
                 previous = current
-                current = current.get_next()
-            previous.set_next(new_node)
-            new_node.set_next(None)
+                current = current.node
+            previous.node = new_node
+            new_node.node = None
 
     def delete(self, data):
         current = self.head
         previous = None
         found = False
         while current and not found:
-            if current.get_data() == data:
+            if current.data == data:
                 found = True
             else:
                 previous = current
-                current = current.get_next()
+                current = current.node
         if not found:
-            raise ValueError("Data %s is not present in list" % data)
+            raise ValueError("Data %s is not present in list" %data)
         if previous is None:
-            self.head = current.get_next()
+            self.head = current.node
         else:
-            previous.set_next(current.get_next())
+            previous.node = current.node
 
     @staticmethod
     def printLinkedList(head):
         current = head
         print "Linked List: ",
         while current:
-            print current.get_data(),
+            print current.data,
             print "-->",
-            current = current.get_next()
+            current = current.node
         print "X"
 
 
@@ -87,3 +91,6 @@ if __name__ == "__main__":
     ll_obj.insert(4)
     ll_obj.insert_at_end(5)
     ll_obj.printLinkedList(ll_obj.head)
+    ll_obj.delete(3)
+    ll_obj.printLinkedList(ll_obj.head)
+    print "Size is: ", ll_obj.size()
