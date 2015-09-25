@@ -24,7 +24,6 @@ def pairwise_reversal(head):
         temp.node = current
         current.node = temp1.node
         current = temp1
-    current.node = temp1
     return some
 
 
