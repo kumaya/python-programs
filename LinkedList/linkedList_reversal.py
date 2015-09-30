@@ -19,10 +19,12 @@ def pairwise_reversal(head):
     some = current.node
     while current and current.node:
         temp = current.node
-        if temp:
-            temp1 = temp.node
+        temp1 = temp.node
         temp.node = current
-        current.node = temp1.node
+        if temp1 and temp1.node:
+            current.node = temp1.node
+        else:
+            current.node = temp1
         current = temp1
     return some
 

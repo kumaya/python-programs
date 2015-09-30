@@ -35,12 +35,14 @@ class Remove(object):
         self.head = head
 
     def delete(self):
+        some = self.head
         current = self.head
         while current.get_next():
             if current.get_data() == current.get_next().get_data():
-                current = current.get_next().get_next()
+                current.set_next(current.get_next().get_next())
             else:
                 current = current.get_next()
+        return some
 
 
 if __name__ == "__main__":
@@ -59,3 +61,10 @@ if __name__ == "__main__":
     newLL = dLL.traverse_and_delete()
     print "Unique element",
     llObj.printLinkedList(newLL.head)
+
+    print "#"*80
+    head = llObj.head
+    ma = Remove(head)
+    new_head = ma.delete()
+    print "Duplicates removed without using new linked list "
+    llObj.printLinkedList(new_head)

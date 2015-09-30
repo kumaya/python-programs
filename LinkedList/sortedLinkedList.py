@@ -127,4 +127,3 @@ if __name__ == "__main__":
 
     print "Sorted Linked List: ",
     llObj.print_linked_list(mergedLinkedList)
-
