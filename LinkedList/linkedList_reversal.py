@@ -1,4 +1,4 @@
-# Program to reverse a linked list
+# Program to reverse and pairwise reverse a linked list
 from linkedListProperty import LinkedList
 
 

@@ -59,6 +59,7 @@ def checkerUsingList(str1, str2):
 	else:
 		return False
 
+
 if __name__ == "__main__":
 	str1 = 'kuchbhi'
 	str2 = 'bukihch'
