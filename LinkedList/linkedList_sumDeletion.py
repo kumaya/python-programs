@@ -6,27 +6,14 @@ from linkedListProperty import LinkedList
 
 
 def delete_pairs(head, val):
-    current = head
-    next = current.node
-    if (current.data + next.data) == val:
-        some = next.node
+    if head is None or head.node is None:
+        return head
+    next_node = delete_pairs(head.node, val)
+    if next_node and (head.data + next_node.data == val):
+        head = next_node.node
     else:
-        some = current
-
-    if current.node:
-        next = current.node
-        if next:
-            next2 = next.node
-    while next2 and next:
-        if next.data + next2.data == val:
-            current.node = next2.node
-            next = next2.node
-            next2 = next2.node
-        else:
-            current = current.node
-            next = next.node
-            next2 = next2.node
-    return some
+        head.node = next_node
+    return head
 
 
 def create_linked_list(ll):
@@ -40,6 +27,13 @@ def create_linked_list(ll):
     ll.insert(1)
     ll.insert(5)
     ll.insert(2)
+    ll.insert(5)
+    ll.insert(2)
+    # ll.insert(12)
+    # ll.insert(10)
+    # ll.insert(10)
+    # ll.insert(19)
+    # ll.insert(1)
     return ll.head
 
 
