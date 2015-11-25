@@ -76,7 +76,7 @@ class BinaryTree(object):
             else:
                 depth += 1
                 BinaryTree.print_tree(root_node.left_node, depth)
-                print "\t"*depth, root_node.data
+                print root_node.data,
                 BinaryTree.print_tree(root_node.right_node, depth)
         except (KeyError, AttributeError):
             print "Root value not found"
@@ -84,17 +84,15 @@ class BinaryTree(object):
 
 if __name__ == "__main__":
     bTree = BinaryTree()
-    root = bTree.insert(root=None, data=3)
-    bTree.insert(root, 50)
-    bTree.insert(root, 5)
-    bTree.insert(root, 7)
-    bTree.insert(root, 4)
-    bTree.insert(root, 41)
-    bTree.insert(root, 1)
+    root = bTree.insert(root=None, data=1)
     bTree.insert(root, 2)
+    bTree.insert(root, 3)
+    bTree.insert(root, 4)
+    bTree.insert(root, 5)
     print "Printing Binary tree: "
     BinaryTree.print_tree(root)
 
+    print ""
     print "*"*80
     val = 510
     print "Searching value %d in the tree:" % val,
