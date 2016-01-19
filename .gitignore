@@ -3,5 +3,6 @@
 *.sqlite
 *.swp
 *.idea
+test.py
 AUTHORS
 Authors
