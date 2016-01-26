@@ -97,7 +97,7 @@ if __name__ == "__main__":
     val = 510
     print "Searching value %d in the tree:" % val,
     bTree.search(root, val)
-    val = 41
+    val = 4
     print "Searching value %d in the tree:" % val,
     bTree.search(root, val)
 
