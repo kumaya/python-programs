@@ -37,6 +37,8 @@ def swap_nodes(head, x, y):
     prev = nodeX = nodeY = prevNodeX = prevNodeY = None
     foundNodeX = foundNodey = foundBothNodes = 0
 
+    # Get nodeX, nodeY, previous of nodeX and nodeY respectively
+    # These values will be required while swap
     while head and foundBothNodes == 0:
         if head.get_data == x:
             prevNodeX = prev
@@ -54,16 +56,20 @@ def swap_nodes(head, x, y):
         if foundNodeX == 1 and foundNodey == 1:
             foundBothNodes = 1
 
+    # If nodeX is head; make nodeY as head after swap
     if prevNodeX:
         prevNodeX.get_node = nodeY
     else:
         some = nodeY
 
+    # If nodeY is head; make nodeX as head after swap
     if prevNodeY:
         prevNodeY.get_node = nodeX
     else:
         some = nodeX
 
+    # While swapping links will get modified leading to loss of original
+    #  link from X, so store it in a temp var.
     temp = nodeX.get_node
     nodeX.get_node = nodeY.get_node
     nodeY.get_node = temp
