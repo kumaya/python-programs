@@ -6,14 +6,21 @@ from linkedListProperty import LinkedList
 
 
 def delete_pairs(head, val):
-    if head is None or head.node is None:
-        return head
-    next_node = delete_pairs(head.node, val)
-    if next_node and (head.data + next_node.data == val):
-        head = next_node.node
-    else:
-        head.node = next_node
-    return head
+    some = head
+    prev = None
+    while head:
+        v1 = head
+        v2 = head.node
+        if v2 and v1.data + v2.data == val:
+            if not prev:
+                some = v2.node
+            else:
+                prev.node = v2.node
+            head = v2.node
+        else:
+            prev = head
+            head = head.node
+    return some
 
 
 def create_linked_list(ll):
