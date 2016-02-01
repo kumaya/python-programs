@@ -6,11 +6,11 @@ def anagramChecker(str1, str2):
 	lst2 = [0] * 26
 
 	for i in xrange(len(str1)):
-		pos = ord(str1[i]) - ord('a')
+		pos = ord(str1[i].lower()) - ord('a')
 		lst1[pos] = lst1[pos] + 1
 
 	for i in xrange(len(str2)):
-		pos = ord(str2[i]) - ord('a')
+		pos = ord(str2[i].lower()) - ord('a')
 		lst2[pos] = lst2[pos] + 1
 
 	j = 0

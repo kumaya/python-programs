@@ -14,13 +14,10 @@ def get_leaf_node_count(root):
 def get_full_nodes(root, count=0):
     if not root:
         return 0
+    if not root.left_node and not root.right_node:
+        return 0
     else:
-        get_full_nodes(root.left_node, count)
-        get_full_nodes(root.right_node, count)
-        if root.left_node and root.right_node:
-            count += 1
-        print count
-    return count
+        return 1 + get_full_nodes(root.left_node, count) + get_full_nodes(root.right_node, count)
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
