@@ -1,7 +1,7 @@
 from BinaryTree import TreeNode
 
 
-#check existence of a path with given sum from root to any node
+# check existence of a path with given sum from root to any node
 def hasPathSum(t1, sum):
     if not t1 or sum == 0:
         return sum == 0
@@ -46,6 +46,22 @@ def LowestCommonAncestor(root, x, y):
     else:
         return right
 
+
+def ancestors(root, x):
+    if root is None:
+        return 0
+    if (root.left_node == x or
+            root.right_node == y or
+            ancestors(root.left_node, x) or
+            ancestors(root.right_node, x)):
+        print root.data,
+        return 1
+    return 0
+
+
+def zigZag(root):
+    pass
+
 if __name__ == "__main__":
     bTree = TreeNode(1)
     bTree.left_node = TreeNode(2)
@@ -53,7 +69,7 @@ if __name__ == "__main__":
     bTree.left_node.left_node = TreeNode(4)
     bTree.left_node.right_node = TreeNode(5)
     bTree.right_node.left_node = TreeNode(6)
-    bTree.left_node.right_node.left_node = TreeNode(7)
+    alpha = bTree.left_node.right_node.left_node = TreeNode(7)
     bTree.left_node.right_node.right_node = TreeNode(8)
 
     sum = 7
@@ -68,3 +84,6 @@ if __name__ == "__main__":
     lca_node = LowestCommonAncestor(bTree, x, y)
     print "Lowest common ancestor of ", x, "and", y, "is: ", lca_node.data
 
+    print "*"*80
+    print "Ancestors of ", alpha.data, "are: ",
+    ancestors(bTree, alpha)
