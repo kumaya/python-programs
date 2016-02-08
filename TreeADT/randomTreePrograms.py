@@ -47,6 +47,16 @@ def LowestCommonAncestor(root, x, y):
         return right
 
 
+def getNodesWithDistance(root, k):
+    if not root:
+        return
+    if k == 0:
+        print root.data
+    else:
+        getNodesWithDistance(root.left_node, k-1)
+        getNodesWithDistance(root.right_node, k-1)
+
+
 def ancestors(root, x):
     if root is None:
         return 0
@@ -58,9 +68,16 @@ def ancestors(root, x):
         return 1
     return 0
 
-
-def zigZag(root):
-    pass
+def getClosestNode(root, level, minDist):
+    if root is None:
+        return
+    if root.left_node is None and root.right_node is None:
+        if minDist < level:
+            minDist = level
+        return
+    getClosestNode(root.left_node, level+1, minDist)
+    getClosestNode(root.right_node, level+1, minDist)
+    return minDist
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
@@ -87,3 +104,8 @@ if __name__ == "__main__":
     print "*"*80
     print "Ancestors of ", alpha.data, "are: ",
     ancestors(bTree, alpha)
+
+    print ""
+    print "*"*80
+    k = 2
+    getNodesWithDistance(bTree, k)
