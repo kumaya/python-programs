@@ -61,7 +61,7 @@ def ancestors(root, x):
     if root is None:
         return 0
     if (root.left_node == x or
-            root.right_node == y or
+            root.right_node == x or
             ancestors(root.left_node, x) or
             ancestors(root.right_node, x)):
         print root.data,

@@ -1,6 +1,7 @@
 # Multiple programs for Binary Search Tree
 
 
+# Node structure of Binary Search Tree
 class BSTNode(object):
     def __init__(self, data):
         self.__data = data
@@ -28,6 +29,7 @@ class BSTNode(object):
         self.__right = r
 
 
+# search a value in a given BST
 def search(cur, key):
     if cur is None:
         return None
@@ -41,26 +43,37 @@ def search(cur, key):
     return "Not Found"
 
 
-def searchMin(cur):
+# search minimum value in BST. By definition leftmost value will be minimum
+def search_min(cur):
     if cur is None:
         return
     else:
         if cur.left is None:
             return cur.data
         else:
-            return searchMin(cur.left)
+            return search_min(cur.left)
 
 
-def searchMax(cur):
+# search maximum value in BST. By definition rightmost value will be maximum
+def search_max(cur):
     if cur is None:
         return
     else:
         if cur.right is None:
             return cur.data
         else:
-            return searchMax(cur.right)
+            return search_max(cur.right)
 
 
+def search_max_non_recursion(cur):
+    if cur is None:
+        return
+    while cur.right is not None:
+        cur = cur.right
+    return cur.data
+
+
+# insert a given key in BST
 def insert(root, key):
     if root is None:
         return BSTNode(key)
@@ -72,6 +85,8 @@ def insert(root, key):
     return root
 
 
+# lowest common ancestor in a BST.
+# node which will have elements in left and right subtree will be lowest common ancestor
 def lowest_common_ancestor(root, x, y):
     if root is None:
         return root
@@ -82,6 +97,83 @@ def lowest_common_ancestor(root, x, y):
             root = root.left
         else:
             root = root.right
+
+
+# check if given tree is BST or not
+
+# for a tree to be BST, all nodes in left subtree should be less then root. Considering that; the maximum value in left
+# subtree should be less then that of root value. Similarly, the minimum value in right subtree should be larger then
+# the root value.
+def is_bst(root):
+    if root is None:
+        return True
+    if root.left is not None and search_max(root.left) > root.data:
+        return False
+    if root.right is not None and search_min(root.right) < root.data:
+        return False
+    if not is_bst(root.left) or not is_bst(root.right):
+        return False
+    return True
+
+# idea is that the inorder traversal of a BST will produce a sorted list.
+def is_bst_inorder(root, prev=[]):
+    if root is None:
+        return
+    else:
+        is_bst_inorder(root.left, prev)
+        prev.append(root.data)
+        is_bst_inorder(root.right, prev)
+    return prev
+
+
+def check(val):
+    for i in xrange(len(val)-1):
+        if val[i] > val[i+1]:
+            return False
+    return True
+
+
+# Inorder successor and predecessor of BST
+def get_pre_suc(root, key, pre, suc):
+    if root is None:
+        return
+    if root.data == key:
+        if root.left is not None:
+            temp = root.left
+            while temp.right is not None:
+                temp = temp.right
+            pre = temp
+
+        if root.right is not None:
+            temp = root.right
+            while temp.left is not None:
+                temp = temp.left
+            suc = temp
+        return pre.data, suc.data
+    if root.data > key:
+        suc = root
+        return get_pre_suc(root.left, key, pre, suc)
+    else:
+        pre = root
+        return get_pre_suc(root.right, key, pre, suc)
+
+
+# kth smallest element in BST
+def count_nodes(root):
+    if root is None:
+        return 0
+    return count_nodes(root.left) + count_nodes(root.right) + 1
+
+
+def kth_smallest_element(root, k):
+    n = count_nodes(root.left)
+    if n+1 == k:    # means root will be kth element
+        return root.data
+    elif n+1 < k:   # kth smallest does not lie in left subtree
+        return kth_smallest_element(root.right, k-n-1)
+    else:
+        return kth_smallest_element(root.left, k)
+
 
 if __name__ == "__main__":
     root = BSTNode(4)
@@ -98,9 +190,22 @@ if __name__ == "__main__":
     val = 15
     print "Search", val, "in BST: ", search(root, 15)
 
-    print "minimum value in BST: ", searchMin(root)
-    print "maximum value in BST: ", searchMax(root)
+    print "minimum value in BST:", search_min(root)
+    print "maximum value in BST:", search_max(root)
+    print "maximum without recursion:", search_max_non_recursion(root)
 
     x = 1
     y = 12
     print "LCA of", x, "and", y, "is", lowest_common_ancestor(root, x, y)
+
+    print "Tree is BST:", is_bst(root)
+    print "Tree is BST using in order traversal", check(is_bst_inorder(root))
+
+    key = 6
+    suc = None
+    pre = None
+    val = get_pre_suc(root, key, suc, pre)
+    print "predecessor and successor of", key, "are", val[0], val[1]
+
+    k = 3
+    print k, "rd smallest element is:", kth_smallest_element(root, k)
