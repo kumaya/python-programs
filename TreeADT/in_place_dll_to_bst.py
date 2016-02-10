@@ -50,14 +50,13 @@ def sorted_dll_to_bst_recur(head, n):
     # Base case
     if n <= 0:
         return
-    head = head.next_node
-    left = sorted_dll_to_bst_recur(head, n//2)
+    left = sorted_dll_to_bst_recur(head.next_node, n//2)
     # head will be middle node after above recursion
     root = head
     # set dll prev as bst's left node
     root.prev = left
     # head = head.next_node
-    root.next_node = sorted_dll_to_bst_recur(head.next_node, n - n // 2 - 1)
+    root.next_node = sorted_dll_to_bst_recur(head.next_node, n - (n // 2) - 1)
     return root
 
 
