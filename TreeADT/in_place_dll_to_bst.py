@@ -52,17 +52,16 @@ def sorted_dll_to_bst_recur(head, n):
         return
     left = sorted_dll_to_bst_recur(head.next_node, n//2)
     # head will be middle node after above recursion
-    root = head
+    parent = Node(head.data)
     # set dll prev as bst's left node
-    root.prev = left
-    # head = head.next_node
-    root.next_node = sorted_dll_to_bst_recur(head.next_node, n - (n // 2) - 1)
-    return root
+    parent.prev = left
+    head = head.next_node
+    parent.next_node = sorted_dll_to_bst_recur(head.next_node, n - (n // 2) - 1)
+    return parent
 
 
 def sorted_dll_to_bst(head):
     n = count_nodes(head)
-    print "==>", head.data, n
     return sorted_dll_to_bst_recur(head, n)
 
 if __name__ == "__main__":
@@ -71,8 +70,8 @@ if __name__ == "__main__":
     dll.next_node.next_node = Node(3)
     dll.next_node.next_node.next_node = Node(4)
     dll.next_node.next_node.next_node.next_node = Node(5)
-    dll.next_node.next_node.next_node.next_node = Node(6)
-    dll.next_node.next_node.next_node.next_node.next_node = Node(7)
+    dll.next_node.next_node.next_node.next_node.next_node = Node(6)
+    dll.next_node.next_node.next_node.next_node.next_node.next_node = Node(7)
     dll.next_node.prev = dll
     dll.next_node.next_node.prev = dll.next_node
     dll.next_node.next_node.next_node.prev = dll.next_node.next_node

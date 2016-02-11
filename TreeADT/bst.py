@@ -175,6 +175,52 @@ def kth_smallest_element(root, k):
         return kth_smallest_element(root.left, k)
 
 
+# create BST from sorted array
+def buildBST(A, left, right):
+    if left > right:
+        return
+    else:
+        mid = left + (right-left)//2
+        newNode = BSTNode(A[mid])
+        newNode.left = buildBST(A, left, mid-1)
+        newNode.right = buildBST(A, mid+1, right)
+    return newNode
+
+
+# ceiling and floor of an input key in BST
+def ceil(root, key):
+    # ceiling value will always be if not on root the immediate preceding value
+    val = -1
+    if root is None:
+        return -1
+    else:
+        while root is not None:
+            if root.data == key:
+                return root.data
+            elif root.data > key:
+                val = root.data
+                root = root.left
+            elif root.data < key:
+                root = root.right
+        return val
+
+
+def floor(root, key):
+    val = -1
+    if root is None:
+        return -1
+    else:
+        while root is not None:
+            if root.data == key:
+                return root.data
+            elif root.data > key:
+                root = root.left
+            elif root.data < key:
+                val = root.data
+                root = root.right
+        return val
+
+
 if __name__ == "__main__":
     root = BSTNode(4)
 
@@ -209,3 +255,13 @@ if __name__ == "__main__":
 
     k = 3
     print k, "rd smallest element is:", kth_smallest_element(root, k)
+
+    a = [1,2,3,4,5,6,7]
+    l = 0
+    r = len(a)
+    new_tree_root = buildBST(a, l, r-1)
+    print "New BST built. Root nodes data:", new_tree_root.data
+
+    key = 7.1
+    print "ceiling value of", key, "is", ceil(root, key)
+    print "floor value of", key, "is", floor(root, key)
