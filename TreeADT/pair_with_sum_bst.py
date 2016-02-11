@@ -4,7 +4,9 @@ import copy
 
 
 def get_pair_with_sum(root, target):
+    # Bi**h please
     s1 = copy.deepcopy([])
+    # Ah! come on
     s2 = copy.deepcopy([])
     cur1 = root
     cur2 = root
@@ -39,10 +41,15 @@ def get_pair_with_sum(root, target):
                     flag2 = True
         if val1 != val2 and val1 + val2 == target:
             return val1, val2
+        # if val1 +val2 is less then target; it is the fault of val1; kick it off
+        # and get bigger val1
         elif val1 + val2 < target:
             flag1 = False
+        # kick val2 to get smaller val2
         elif val1 + val2 > target:
             flag2 = False
+        # god why did you do this.
+        # pfft! time wasted
         if val1 >= val2:
             return False
 
