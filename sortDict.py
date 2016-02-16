@@ -7,7 +7,7 @@ print sorted(dic.items(), key=lambda x: x[1], reverse=False)
 # Return list of keys in sorted order
 print sorted(dic, key=lambda x: x[1])
 
-print help(dic.get)
+# print help(dic.get)
 
 # Reverse the dictionary and sort
 print sorted(zip(dic.values(), dic.keys()))

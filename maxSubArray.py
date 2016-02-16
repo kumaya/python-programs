@@ -20,7 +20,7 @@ class maxSubArray:
                 maxEndIndex = currentEnd
             if (currentSum < 0):
                 currentSum = 0
-                currentStart= currentEnd + 1
+                currentStart = currentEnd + 1
             currentEnd += 1
         print ("maxSum: {0} \nmaxStartIndex: {1} \nmaxEndIndex: {2}".format(maxSum, maxStartIndex, maxEndIndex))
         print self.inpArr[maxStartIndex:maxEndIndex+1]

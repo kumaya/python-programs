@@ -3,7 +3,7 @@
 import inspect
 
 
-class Test(object):
+class foo(object):
     """ My family
     """
 
@@ -19,4 +19,4 @@ class Test(object):
         return "aaa"
 
 
-print inspect.getmembers(Test, predicate=inspect.ismethod)
+print inspect.getmembers(foo, predicate=inspect.ismethod)

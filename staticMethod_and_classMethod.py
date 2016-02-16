@@ -1,38 +1,42 @@
 # test program for the concept of static method and class method
 
+
 class parent(object):
-	@staticmethod
-	def static_method(x):
-		print "parent", x
+    @staticmethod
+    def static_method(x):
+        print "parent", x
 
-	@classmethod
-	def class_method(cls, x):
-		print "parent", cls, x
+    @classmethod
+    def class_method(cls, x):
+        print "parent", cls, x
 
-	def normal_method(self, x):
-		print "parent", self, x
+    def normal_method(self, x):
+        print "parent", self, x
+
 
 class child1(parent):
-	# def static_method(x):
-	# 	print "child1", x
+    # def static_method(x):
+    # 	print "child1", x
 
-	def class_method(cls, x):
-		print "child1", x
+    def class_method(cls, x):
+        print "child1", x
 
-	def normal_method(self, x):
-		print "child1", self, x
+    def normal_method(self, x):
+        print "child1", self, x
+
 
 class child2(parent):
-	@staticmethod
-	def static_method(x):
-		print "child2", x
+    @staticmethod
+    def static_method(x):
+        print "child2", x
 
-	# @classmethod
-	# def class_method(cls, x):
-	# 	print "child2", cls, x
+    # @classmethod
+    # def class_method(cls, x):
+    # 	print "child2", cls, x
 
-	def normal_method(self, x):
-		print "child2", self, x
+    def normal_method(self, x):
+        print "child2", self, x
+
 
 obj_child1 = child1()
 obj_child2 = child2()

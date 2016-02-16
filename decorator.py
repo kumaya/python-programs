@@ -56,7 +56,7 @@ def sum(a,b):
     @param b: Integer number 02
     @return a+b
     """
-    return b+b
+    return a+b
 
 val = sum(3,4)
 print val, "\n", sum.__name__, "\n", sum.__doc__

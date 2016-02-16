@@ -2,35 +2,42 @@
 import timeit
 from timeit import Timer
 
+
 # create list using concatination
 def test1():
-	l = []
-	for i in range(3000):
-		l = l + [i]
+    l = []
+    for i in range(3000):
+        l = l + [i]
+
 
 # create list using append
 def test2():
-	l = []
-	for i in range(3000):
-		l.append(i)
+    l = []
+    for i in range(3000):
+        l.append(i)
+
 
 # create list using list comprehension
 def test3():
-	l = [i for i in range(3000)]
+    l = [i for i in range(3000)]
+
 
 # create list using concat and generator
 def test4():
-	l = []
-	for i in xrange(3000):
-		l = l + [i]
+    l = []
+    for i in xrange(3000):
+        l = l + [i]
+
 
 # create list using list range
 def test5():
-	l = list(range(3000))
+    l = list(range(3000))
+
 
 # create list using list xrange
 def test6():
-	l = list(xrange(3000))
+    l = list(xrange(3000))
+
 
 t1 = Timer("test1()", "from __main__ import test1")
 print "time taken using concatination: ", t1.timeit(number=1000), "ms"
@@ -45,7 +52,7 @@ t4 = Timer("test4()", "from __main__ import test4")
 print "time taken using concatination and xrange: ", t4.timeit(number=1000), "ms"
 
 t5 = Timer("test5()", "from __main__ import test5")
-print "time taken using list range: ",t5.timeit(number=1000), "ms"
+print "time taken using list range: ", t5.timeit(number=1000), "ms"
 
 t6 = Timer("test6()", "from __main__ import test6")
-print "time taken using list xrange: ",t6.timeit(number=1000), "ms"
+print "time taken using list xrange: ", t6.timeit(number=1000), "ms"
