@@ -22,3 +22,4 @@ print "*"*80
 # Sort
 for k, v in sorted(dic.items(), key=lambda (k,v): v):
     print k, v
+    
