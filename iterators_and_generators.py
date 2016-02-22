@@ -1,5 +1,6 @@
 # return n fibonacci numbers
 
+
 def fib1():
     x = 0
     y = 1
@@ -60,3 +61,15 @@ print "Above using generator:", ca.next(), ca.next(), ca.next(), ca.next(), ca.n
 print "List comprehension: ", [x*x for x in range(1, 5)]
 print "Generator: ", (x*x for x in range(1, 5))
 print "List using generator", list((x*x for x in range(1, 5)))
+
+# python factorial generator
+def factorial(n):
+    fact = 1
+    some_count = 1
+    for _ in xrange(n):
+        yield fact
+        some_count += 1
+        fact *= some_count
+
+n = 5
+print("First %d factorials are: %s" %(n, list(factorial(n))))
