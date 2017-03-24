@@ -89,6 +89,20 @@ def quick_sort(inp_list):
                 quick_sort([x for x in inp_list if x > pivot_ele]))
 
 
+"""Counting sort. Additional info is nos. are integer no. with max length=8 bits
+"""
+from collections import defaultdict
+def counting_sort(inp_list):
+    count_dict = defaultdict(int)
+    out_list = []
+    for item in inp_list:
+        count_dict[item] += 1
+    for k in count_dict:
+        for count in xrange(count_dict[k]):
+            out_list.append(k)
+    return out_list
+
+
 from random import randint
 inp_list = [randint(-2, i) for i in range(10)]
 print "Bubble sort:", bubble_sort(inp_list)
@@ -100,6 +114,8 @@ inp_list = [randint(-2, i) for i in range(10)]
 print "Merge sort:", merge_sort(inp_list)
 inp_list = [randint(-2, i) for i in range(10)]
 print "Quick sort:", quick_sort(inp_list)
+inp_list = [randint(0, i) for i in range(10)]
+print "Counting sort:", counting_sort(inp_list)
 
 print "*"*56
 print("Let's check the running time of these sorting techniques")
@@ -109,20 +125,24 @@ from timeit import Timer
 
 inp_list1 = [randint(-10000, 10000) for i in range(1000)]
 qs = Timer("quick_sort(inp_list1)", "from __main__ import quick_sort, inp_list1")
-print "time taken for quick_sort: ", qs.timeit(number=1000), "ms"
+print "time taken for quick_sort: ", qs.timeit(number=1000), "sec"
 
 inp_list2 = [randint(-10000, 10000) for i in range(1000)]
 ms = Timer("merge_sort(inp_list2)", "from __main__ import merge_sort, inp_list2")
-print "time taken for merge_sort: ", qs.timeit(number=1000), "ms"
+print "time taken for merge_sort: ", qs.timeit(number=1000), "sec"
 
 inp_list3 = [randint(-10000, 10000) for i in range(1000)]
 inss = Timer("insertion_sort(inp_list3)", "from __main__ import insertion_sort, inp_list3")
-print "time taken for insertion_sort: ", inss.timeit(number=1000), "ms"
+print "time taken for insertion_sort: ", inss.timeit(number=1000), "sec"
 
 inp_list4 = [randint(-10000, 10000) for i in range(1000)]
 ss = Timer("selection_sort(inp_list4)", "from __main__ import selection_sort, inp_list4")
-print "time taken for selection_sort: ", ss.timeit(number=1000), "ms"
+print "time taken for selection_sort: ", ss.timeit(number=1000), "sec"
 
 inp_list5 = [randint(-10000, 10000) for i in range(1000)]
 bs = Timer("bubble_sort(inp_list5)", "from __main__ import bubble_sort, inp_list5")
-print "time taken for bubble_sort: ", bs.timeit(number=1000), "ms"
+print "time taken for bubble_sort: ", bs.timeit(number=1000), "sec"
+
+inp_list6 = [randint(0, 20000) for i in range(1000)]
+cs = Timer("counting_sort(inp_list6)", "from __main__ import counting_sort, inp_list6")
+print "time taken for counting_sort: ", cs.timeit(number=1000), "sec"
