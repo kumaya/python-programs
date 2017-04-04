@@ -234,33 +234,41 @@ if __name__ == "__main__":
     root.right.right = BSTNode(7)
 
     val = 15
+    print "Search BST: "
     print "Search", val, "in BST: ", search(root, 15)
+    print "*"*80
 
     print "minimum value in BST:", search_min(root)
     print "maximum value in BST:", search_max(root)
     print "maximum without recursion:", search_max_non_recursion(root)
+    print "*"*80
 
     x = 1
     y = 12
     print "LCA of", x, "and", y, "is", lowest_common_ancestor(root, x, y)
+    print "*"*80
 
     print "Tree is BST:", is_bst(root)
     print "Tree is BST using in order traversal", check(is_bst_inorder(root))
+    print "*"*80
 
     key = 6
     suc = None
     pre = None
     val = get_pre_suc(root, key, suc, pre)
     print "predecessor and successor of", key, "are", val[0], val[1]
+    print "*"*80
 
     k = 3
-    print k, "rd smallest element is:", kth_smallest_element(root, k)
+    print k, " smallest element is:", kth_smallest_element(root, k)
+    print "*"*80
 
     a = [1,2,3,4,5,6,7]
     l = 0
     r = len(a)
     new_tree_root = buildBST(a, l, r-1)
     print "New BST built. Root nodes data:", new_tree_root.data
+    print "*"*80
 
     key = 7.1
     print "ceiling value of", key, "is", ceil(root, key)

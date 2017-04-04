@@ -73,3 +73,19 @@ def factorial(n):
 
 n = 5
 print("First %d factorials are: %s" %(n, list(factorial(n))))
+
+
+print "*"*80
+# use of send in generators
+def fibonacci():
+    x, y, z = 0, 1, 0
+    while z < 4:
+        x, y = y, x+y
+        z = yield x
+        print x, z
+
+ob = fibonacci()
+for i in xrange(100):
+    print "Yielded value: ", ob.next()
+    if i == 5:
+        ob.send(i)
