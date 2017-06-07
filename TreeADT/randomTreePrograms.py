@@ -30,6 +30,14 @@ def add(t):
             Q.append(val.right_node)
     return sum
 
+def sum_rec(t):
+    if not t:
+        return 0
+    else:
+        sum_left = sum_rec(t.left_node)
+        sum_right = sum_rec(t.right_node)
+        return t.data + sum_left + sum_right
+
 
 def LowestCommonAncestor(root, x, y):
     if not root:
@@ -94,6 +102,7 @@ if __name__ == "__main__":
 
     print "*"*80
     print "Sum of all nodes: ", add(bTree)
+    print "Sum of all nodes (using recursion): ", sum_rec(bTree)
 
     print "*"*80
     x = 4
