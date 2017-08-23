@@ -1,6 +1,7 @@
 # Reverse Level order tree traversal
 
 from BinaryTree import TreeNode
+from heightOfATree import height_using_recursion
 
 
 def reverseLevelOrderTraversal(root):
@@ -24,11 +25,31 @@ def reverseLevelOrderTraversal(root):
         if root.left_node:
             Q.append(root.left_node)
 
-
     while len(S) > 0:
         root = S.pop()
         print root.data,
 
+
+def printNode(root, l):
+    if not root:
+        return
+    printNode(root.left_node, l-1)
+    printNode(root.right_node, l-1)
+    if l == 0:
+        print root.data,
+
+
+def reverseLevelOrderRecursion(root):
+    if not root:
+        return
+    else:
+        h = height_using_recursion(root)
+        print "Forward: ",
+        for i in range(h):
+            printNode(root, i)
+        print "\nReverse: ",
+        for i in range(h, -1, -1):
+            printNode(root, i)
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
@@ -41,3 +62,7 @@ if __name__ == "__main__":
 
     print "Reverse Level order traversal: ",
     reverseLevelOrderTraversal(bTree)
+    print ""
+    print "*"*80
+    print "Reverse level order using recursion: "
+    reverseLevelOrderRecursion(bTree)
