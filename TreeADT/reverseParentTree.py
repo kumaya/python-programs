@@ -1,43 +1,45 @@
-# Reverse Level order tree traversal
-
-from BinaryTree import TreeNode
-
-
-def reverseLevelOrderTraversal(root):
-    S = []
-    Q = []
-
-    # add first node in queue as entry point
-    Q.append(root)
-
-    while len(Q) > 0:
-        root = Q.pop(0)
-        S.append(root)
-
-
-        # If right node, add to queue
-        # Right first, since we want to pop it later as comparred to left nodes
-        if root.right_node:
-            Q.append(root.right_node)
-
-        # If left node, add to queue
-        if root.left_node:
-            Q.append(root.left_node)
+"""
+@Problem Statement:
+One of the many ways of representing a tree is to have an array(of length same as number of nodes), 
+where each element in the node denotes the parent of that node.
+{-1, 0, 0, 1, 1} would represent a tree with -
+    * 0 as root
+    * 1 and 2 as children of 0
+    * 3 and 4 as children of 1
+Given a similar representation, print reverse level order traversal of the corresponding tree.
+Level order traversal of a tree is where we traverse levels of tree one by one.
+@Input:
+N: Length of tree
+treeNode: representation of tree
+"""
 
 
-    while len(S) > 0:
-        root = S.pop()
-        print root.data,
+def reverse_parent_tree(tree, root):
+    # base case for recursive call
+    if len(tree) == 0:
+        return
+
+    ret = tree
+    tree = []
+    for node in ret:
+        if node in root:
+            tree += root[node]
+    reverse_parent_tree(tree, root)
+    print " ".join(ret)
 
 
-if __name__ == "__main__":
-    bTree = TreeNode(1)
-    bTree.left_node = TreeNode(2)
-    bTree.right_node = TreeNode(3)
-    bTree.left_node.left_node = TreeNode(4)
-    bTree.left_node.right_node = TreeNode(5)
-    bTree.right_node.left_node = TreeNode(6)
-    bTree.left_node.left_node.left_node = TreeNode(12)
+# N = 5
+# treeNode = ['-1', '0', '0', '2', '1']
+N = 9
+treeNode = ['8', '7', '0', '5', '5', '8', '7', '0', '-1']
+parent = {}
 
-    print "Reverse Level order traversal: ",
-    reverseLevelOrderTraversal(bTree)
+for index,val in enumerate(treeNode):
+    if val in parent:
+        parent[val].append(str(index))
+    else:
+        parent[val] = [str(index)]
+
+# print parent
+
+reverse_parent_tree(parent['-1'], parent)

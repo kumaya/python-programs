@@ -54,6 +54,17 @@ def post_order_traversal(root):
         post_order_traversal(root.right_node)
         print root.data,
 
+def level_order_traversal(root):
+    Q = []
+    Q.append(root)
+    while len(Q) > 0:
+        root = Q.pop(0)
+        print root.data,
+        if root.left_node:
+            Q.append(root.left_node)
+        if root.right_node:
+            Q.append(root.right_node)
+
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
@@ -74,3 +85,8 @@ if __name__ == "__main__":
     print "*"*80
     print "PostOrder Tree traversal"
     post_order_traversal(bTree)
+
+    print ""
+    print "*"*80
+    print "LevelOrder Tree traversal"
+    level_order_traversal(bTree)
