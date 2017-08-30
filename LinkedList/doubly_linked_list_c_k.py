@@ -45,8 +45,10 @@ def revDLL(head):
 def modify(h, c, k):
     final = h
     data = k - c
+    # insert new node if required
     while h:
         if data == h.data:
+            # if node with value==data already exists, do nothing
             break
         if data > h.data:
             h = h.n
@@ -62,7 +64,8 @@ def modify(h, c, k):
             break
     while h:
         if k == h.data:
-            h.prev.n = h.n
+            if h.prev:
+                h.prev.n = h.n
             if h.n:
                 h.n.prev = h.prev
         h = h.n
@@ -80,9 +83,9 @@ if __name__ == "__main__":
     head.n.n.n.n = NodeDLL(10)
     head.n.n.n.n.prev = head.n.n.n
     print "Original DLL: ", printDLL(head)
-    print "Original Reversed DLL: ", revDLL(head.n.n.n.n)
-    k = 9
-    c = 5
+    # print "Original Reversed DLL: ", revDLL(head.n.n.n.n)
+    k = 2
+    c = 0
     nh = modify(head, c, k)
     print "Modified DLL: ", printDLL(nh)
-    print "Reversed DLL: ", revDLL(nh.n.n.n.n)
+    # print "Reversed DLL: ", revDLL(nh.n.n.n.n)

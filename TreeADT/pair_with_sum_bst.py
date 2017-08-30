@@ -54,6 +54,27 @@ def get_pair_with_sum(root, target):
             return False
 
 
+def get_pair_with_sum_rec(root, node, val):
+    if not node:
+        return False
+    orignl_root = root
+    diff = val - node.data
+    if has_other_pair(orignl_root, node, diff):
+        first_part = val - diff
+        return first_part, diff
+    return get_pair_with_sum_rec(orignl_root, node.left, sum) or \
+           get_pair_with_sum_rec(orignl_root, node.right, sum)
+
+
+def has_other_pair(root, this_node, rem):
+    if not root:
+        return
+    if root.data == rem and this_node!=root:
+        return root.data
+    elif root.data < rem:
+        return has_other_pair(root.right, this_node, rem)
+    elif root.data > rem:
+        return has_other_pair(root.left, this_node, rem)
 
 if __name__ == "__main__":
     root = BSTNode(4)
@@ -67,5 +88,7 @@ if __name__ == "__main__":
     root.right.left = BSTNode(5)
     root.right.right = BSTNode(7)
 
-    sum = 8
-    print get_pair_with_sum(root, sum)
+    sum = 4
+    for sum in xrange(1, 15):
+        print get_pair_with_sum(root, sum),
+        print get_pair_with_sum_rec(root, root, sum)
