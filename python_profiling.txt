@@ -1,0 +1,26 @@
+Profiling a long running python program
++++++++++++++++++++++++++++++++++++++++
+1. Add the following program into source file and call as decorator
+
+import cProfile
+
+def do_cprofile(func):
+	def profiled_func(*args, **kwargs):
+		profile = cProfile.Profile()
+		try:
+			profile.enable()
+			result = func(*args, **kwargs)
+			profile.disable()
+			return result
+		finally:
+			profile.dump_stats('/tmp/profile_bin.prof')
+	return profiled_func
+
+2. Convert the profile_bin.prof to human readable file
+
+import pstats
+
+f = open('/tmp/human_readable_profile.prof', 'w')
+stats = pstats.Stats('/tmp/profile_bin.prof', stream=f)
+stats.sort_stats('cumulative').print_stats()
+f.close()
