@@ -1,0 +1,58 @@
+what are Django Q and F functions
+what are generator expression. Examples
+How to stop a generator stop midway? Take input from user to stop. How ?
+Implement Singleton class
+'is' operator in python. Why is "id(1) is id(1)", False 
+How to create dynamic classes in runtime
+    Foo = type('Foo', (), {'some_method': some_method})
+    https://jeffknupp.com/blog/2013/12/28/improve-your-python-metaclasses-and-dynamic-classes-with-type/
+What is the difference between iterator vs iterables
+__slots__ and their usecase. What if a class contains some attributes which are not defined in slots, will they throw error?
+what are closure and partials
+IMPLEMENT: counting sort
+ALGO: median in infinite input of numbers in O(n)
+Why GIL?
+    CPython (most used python implementation) is not thread safe. In order, to support multi-threaded python programs,
+    CPython provides a global lock that must be held by current thread before it can safely access python objects.
+
+25/04/2018
+- mro
+- list comprehension
+- how python debugger work
+- Threading (greenthreads, pthreads, twisted)
+- files and csv reader
+- garbage collection
+- dict implementation
+- decorator
+- map, reduce, filter
+- name mangling
+- id(x) == id(y) for string and int
+- decorator param
+- closure
+- weakref and how it works
+- weakref and weakproxy
+
+
+1. Generate 100 numbers which are divisible by 2 and 7 in pythonic way
+2. Given 100 test functions add a retry logic to retry the test 3 times and fail if it fails 3 times else pass
+3. What are generators? Give example?
+4. How to iterate over a dict using generators
+5. What are clousres? Can the value in the outside function be modified inside the inner function?
+6. Given a file with 1000 users write a program to generate unique alphanumeric password b/w length 8-10 and then save these passords in the file
+7. What does str += ch does? What is the complexity?
+8. How is dict implemented internally? 
+9. St1 = “abc” , str2 =“abc” , str1 == str2 ? Why?
+10. What are slots? Why will you use it?
+11. What is lambda function?
+12. Why GIL? How is thread management done in python?
+13. Exception handling in python?
+https://mail.python.org/pipermail/python-list/2005-March/346300.html
+	
+getattr, hasattr, dynamic resolve of methods
+cyclic imports (module a imports b and b imports a)
+multi level decorator, run once (five function each decorated, how many times it will be called, how to restrict call to just once)
+statement decorator, like decorator over print
+write your own exception
+when is args and kwargs used. pep specification
+regex to validate date
+threading, eventlet spawn
