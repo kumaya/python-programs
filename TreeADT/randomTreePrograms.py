@@ -39,22 +39,6 @@ def sum_rec(t):
         return t.data + sum_left + sum_right
 
 
-def LowestCommonAncestor(root, x, y):
-    if not root:
-        return root
-    if root.data == x or root.data == y:
-        return root
-    left = LowestCommonAncestor(root.left_node, x, y)
-    right = LowestCommonAncestor(root.right_node, x, y)
-
-    if left and right:
-        return root
-    elif left:
-        return left
-    else:
-        return right
-
-
 def getNodesWithDistance(root, k):
     if not root:
         return
@@ -76,6 +60,7 @@ def ancestors(root, x):
         return 1
     return 0
 
+
 def getClosestNode(root, level, minDist):
     if root is None:
         return
@@ -86,6 +71,7 @@ def getClosestNode(root, level, minDist):
     getClosestNode(root.left_node, level+1, minDist)
     getClosestNode(root.right_node, level+1, minDist)
     return minDist
+
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
@@ -103,12 +89,6 @@ if __name__ == "__main__":
     print "*"*80
     print "Sum of all nodes: ", add(bTree)
     print "Sum of all nodes (using recursion): ", sum_rec(bTree)
-
-    print "*"*80
-    x = 4
-    y = 8
-    lca_node = LowestCommonAncestor(bTree, x, y)
-    print "Lowest common ancestor of ", x, "and", y, "is: ", lca_node.data
 
     print "*"*80
     print "Ancestors of ", alpha.data, "are: ",
