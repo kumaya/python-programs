@@ -50,6 +50,26 @@ def reverseLevelOrderRecursion(root):
         print "\nReverse: ",
         for i in range(h, -1, -1):
             printNode(root, i)
+        print "\nSpiral: ",
+        flag = False
+        for i in range(h):
+            printSpiral(root, i, flag)
+            flag = not flag
+
+
+def printSpiral(node, level, flag):
+    if not node:
+        return
+    if level == 0:
+        print node.data,
+    elif level > 0:
+        if flag:
+            printSpiral(node.left_node, level - 1, flag)
+            printSpiral(node.right_node, level - 1, flag)
+        else:
+            printSpiral(node.right_node, level - 1, flag)
+            printSpiral(node.left_node, level - 1, flag)
+
 
 if __name__ == "__main__":
     bTree = TreeNode(1)
