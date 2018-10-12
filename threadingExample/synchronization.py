@@ -1,17 +1,17 @@
 # thread synchronization
 import threading
 
-# global var
-x = 0
 
 def increment():
     global x
     x += 1
 
+
 def threaded_task(lock):
     for _ in xrange(1000):
         with lock:
             increment()
+
 
 def main_task():
     global x
@@ -28,7 +28,9 @@ def main_task():
     t1.join()
     t2.join()
 
+
 if __name__ == "__main__":
+    x = 0
     for i in xrange(10):
         main_task()
         print("Iteration {0}: x = {1}".format(i, x))
