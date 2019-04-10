@@ -37,7 +37,7 @@ class Graph(object):
                 mst.append([u, v, w])
                 self.union(parent, x, y)
             else:
-                # don't do anything as this u,v is already in mast
+                # don't do anything as this u,v is already in mst
                 pass
         return mst
 
