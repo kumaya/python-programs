@@ -9,13 +9,15 @@ from datetime import datetime
 def minCoinsRec(change, coins):
     if change == 0:
         return 0
-    tot_min_coins = 10000000
+    # total number of coins required to make change will not be greater then
+    # the value of coin. So min equals change
+    min = change
     for coin in coins:
-        if change-coin >= 0:
-            this_min_coins = minCoinsRec(change-coin, coins)
-            if this_min_coins < tot_min_coins:
-                tot_min_coins = this_min_coins
-    return tot_min_coins + 1
+        if change - coin >= 0:
+            c = minCoinsRec(change - coin, coins)
+            if min > c + 1:
+                min = c + 1
+    return min
 
 
 def minCoinsTopDownDP(change, coins, dp):
@@ -23,13 +25,13 @@ def minCoinsTopDownDP(change, coins, dp):
         return 0
     if dp[change] != -1:
         return dp[change]
-    tot_min_coins = 99999999
+    min = change
     for coin in coins:
         if change-coin >= 0:
-            this_min_coins = minCoinsTopDownDP(change - coin, coins, dp)
-            if this_min_coins < tot_min_coins:
-                tot_min_coins = this_min_coins
-    dp[change] = tot_min_coins + 1
+            c = minCoinsTopDownDP(change - coin, coins, dp)
+            if min > c+1:
+                min = c+1
+    dp[change] = min
     return dp[change]
 
 
@@ -38,9 +40,9 @@ def minCoinsBottomUpDP(change, coins, dp):
     for i in range(1, change+1):
         for coin in coins:
             if i-coin >= 0:
-                curr_min_coins = dp[i-coin] + 1
-                if curr_min_coins < dp[i]:
-                    dp[i] = curr_min_coins
+                c = dp[i-coin] + 1
+                if c < dp[i]:
+                    dp[i] = c
     return dp[change]
 
 

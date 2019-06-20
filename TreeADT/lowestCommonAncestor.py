@@ -11,13 +11,11 @@ def LowestCommonAncestor(root, x, y):
 
     if left and right:
         return root
-    elif not left and not right:
-        return None
     elif left:
         return left
     else:
         return right
-
+    return None
 
 def inorder(root, io):
     if not root:
