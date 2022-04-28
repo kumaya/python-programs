@@ -36,6 +36,18 @@ def top_view_of_tree(root):
     print ""
 
 
+def topViewRecursion(root, height, hd, globalMap):
+    if not root:
+        return
+    if globalMap.get(hd, None) is None:
+        globalMap[hd] = [root.data, height]
+    else:
+        if globalMap[hd][1] > height:
+            globalMap[hd] = [root.data, height]
+    topViewRecursion(root.left, height+1, hd-1, globalMap)
+    topViewRecursion(root.right, height+1, hd+1, globalMap)
+
+
 def bottom_view_of_tree(root):
     if not root:
         return
@@ -57,6 +69,18 @@ def bottom_view_of_tree(root):
     print ""
 
 
+def bottomViewRecursion(root, height, hd, globalMap):
+    if not root:
+        return
+    if globalMap.get(hd, None) is None:
+        globalMap[hd] = [root.data, height]
+    else:
+        if globalMap[hd][1] < height:
+            globalMap[hd] = [root.data, height]
+    bottomViewRecursion(root.left, height+1, hd-1, globalMap)
+    bottomViewRecursion(root.right, height+1, hd+1, globalMap)
+
+
 if __name__ == '__main__':
     root = Node(20)
     root.left = Node(8)
@@ -70,5 +94,19 @@ if __name__ == '__main__':
     print "Top view of a tree"
     top_view_of_tree(root)
 
+    print "Top view of a tree recursion"
+    map = dict()
+    topViewRecursion(root, 0, 0, map)
+    print map
+    for i in sorted(map.items()):
+        print i[1][0],
+    print ""
+
     print "Bottom view of a tree"
     bottom_view_of_tree(root)
+    print "Bottom view of a tree recursion"
+    map = dict()
+    bottomViewRecursion(root, 0, 0, map)
+    for i in sorted(map.items()):
+        print i[1][0],
+    print ""

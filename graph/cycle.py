@@ -36,6 +36,40 @@ class Graph(object):
         return False
 
 
+class GraphNew(object):
+    def __init__(self, v):
+        self.vertices = v
+        self.graph = defaultdict(list)
+
+    # undirected graph
+    def add_edge(self, u, v):
+        self.graph[u].append(v)
+        # self.graph[v].append(u)
+
+    def cycle(self, edge, visited):
+        queue = list()
+        queue.append(edge)
+        while len(queue) > 0:
+            rem = queue.pop(0)
+            if visited[rem]:
+                return True
+            else:
+                visited[rem] = True
+                for nei in self.graph[rem]:
+                    if not visited[nei]:
+                        visited[nei] = "seen"
+                        queue.append(nei)
+        return False
+
+    def is_cyclic(self):
+        visited = [False]*self.vertices
+        for vertex in range(self.vertices):
+            if not visited[vertex]:
+                if self.cycle(vertex, visited):
+                    return "CYCLIC"
+        return "ACYCLIC"
+
+
 if __name__ == '__main__':
     g = Graph(3)
     g.addEdge(0, 1)
@@ -47,3 +81,20 @@ if __name__ == '__main__':
         print "Cyclic"
     else:
         print "Acyclic"
+
+    g = GraphNew(6)
+    g.add_edge(1, 0)
+    g.add_edge(1, 4)
+    g.add_edge(2, 0)
+    g.add_edge(2, 3)
+    g.add_edge(4, 5)
+
+    g = GraphNew(3)
+    g.add_edge(0, 1)
+    g.add_edge(0, 2)
+    g.add_edge(2, 1)
+
+    g = GraphNew(2)
+    g.add_edge(1, 0)
+    g.add_edge(0, 1)
+    print g.is_cyclic()

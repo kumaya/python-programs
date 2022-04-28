@@ -13,20 +13,32 @@ def reverse_linked_list(head):
     return prev
 
 
+def reverseLLRecursion(head):
+    # return if empty
+    if not head:
+        return head
+    # return if last node
+    if not head.node:
+        return head
+    lastNode = reverseLLRecursion(head.node)
+    head.node.node = head
+    head.node = None
+    return lastNode
+
+
 def pairwise_reversal(head):
-    temp = temp1 = None
     current = head
-    some = current.node
+    dummy = current.node
     while current and current.node:
-        temp = current.node
-        temp1 = temp.node
-        temp.node = current
-        if temp1 and temp1.node:
-            current.node = temp1.node
+        next = current.node
+        next_to_next = next.node
+        next.node = current
+        if next_to_next and next_to_next.node:
+            current.node = next_to_next.node
         else:
-            current.node = temp1
-        current = temp1
-    return some
+            current.node = next_to_next
+        current = next_to_next
+    return dummy
 
 
 def create_linked_list():
@@ -56,7 +68,11 @@ if __name__ == "__main__":
     new_head = reverse_linked_list(linked_list1)
     print "Reversed",
     printLinkedList(new_head)
-    print "*"*80
+    linked_list3 = create_linked_list()
+    new_head = reverseLLRecursion(linked_list3)
+    print "Reversed (recusrion)",
+    printLinkedList(new_head)
+    print "*" * 80
     linked_list2 = create_linked_list()
     printLinkedList(linked_list2)
     new_head = pairwise_reversal(linked_list2)

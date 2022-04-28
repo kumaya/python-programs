@@ -47,32 +47,32 @@ def insertion_sort(inp_list):
 
 """ Merge sort
 """
-def merge_sort(inp_list):
-    if len(inp_list) > 1:
-        mid = len(inp_list) // 2
-        left_half = inp_list[:mid]
-        right_half = inp_list[mid:]
-        merge_sort(left_half)
-        merge_sort(right_half)
+def merge_sort(inp):
+    if len(inp) <= 1:
+        return inp
+    mid = len(inp)//2
+    left = merge_sort(inp[:mid])
+    right = merge_sort(inp[mid:])
+    return merge(left, right)
 
-        i, j, k = 0, 0, 0
-        while i < len(left_half) and j < len(right_half):
-            if left_half[i] < right_half[j]:
-                inp_list[k] = left_half[i]
-                i += 1
-            else:
-                inp_list[k] = right_half[j]
-                j += 1
-            k += 1
-        while i < len(left_half):
-            inp_list[k] = left_half[i]
+
+def merge(left, right):
+    res = []
+    i, j = 0, 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            res.append(left[i])
             i += 1
-            k += 1
-        while j < len(right_half):
-            inp_list[k] = right_half[j]
+        else:
+            res.append(right[j])
             j += 1
-            k += 1
-    return inp_list
+    while i < len(left):
+        res.append(left[i])
+        i += 1
+    while j < len(right):
+        res.append(right[j])
+        j += 1
+    return res
 
 
 """ Quick sort
@@ -88,6 +88,21 @@ def quick_sort(inp_list):
                 [x for x in inp_list if x == pivot_ele] +
                 quick_sort([x for x in inp_list if x > pivot_ele]))
 
+
+def quickSort(arr, lo, hi):
+    if lo < hi:
+        pivot = random.randint(lo, hi-1)
+        # swap pivot and first value
+        arr[lo], arr[pivot] = arr[pivot], arr[lo]
+        j = lo+1
+        for i in range(lo+1, hi):
+            if arr[i] < arr[lo]:
+                arr[i], arr[j] = arr[j], arr[i]
+                j += 1
+        # swap pivot element to right place
+        arr[lo], arr[j-1] = arr[j-1], arr[lo]
+        quickSort(arr, lo, j-1)
+        quickSort(arr, j, hi)
 
 """Counting sort. Additional info is nos. are integer no. with max length=8 bits
 """
@@ -114,6 +129,7 @@ inp_list = [randint(-2, i) for i in range(10)]
 print "Merge sort:", merge_sort(inp_list)
 inp_list = [randint(-2, i) for i in range(10)]
 print "Quick sort:", quick_sort(inp_list)
+print "Quick sort:", quickSort(inp_list, 0, len(inp_list)), inp_list
 inp_list = [randint(0, i) for i in range(10)]
 print "Counting sort:", counting_sort(inp_list)
 
@@ -126,6 +142,9 @@ from timeit import Timer
 inp_list1 = [randint(-10000, 10000) for i in range(1000)]
 qs = Timer("quick_sort(inp_list1)", "from __main__ import quick_sort, inp_list1")
 print "time taken for quick_sort: ", qs.timeit(number=1000), "sec"
+
+qs = Timer("quickSort(inp_list1, 0, len(inp_list1))", "from __main__ import quickSort, inp_list1")
+print "time taken for quickSort: ", qs.timeit(number=1000), "sec"
 
 inp_list2 = [randint(-10000, 10000) for i in range(1000)]
 ms = Timer("merge_sort(inp_list2)", "from __main__ import merge_sort, inp_list2")

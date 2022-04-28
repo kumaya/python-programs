@@ -4,6 +4,9 @@ from BinaryTree import TreeNode
 
 
 def maximum_node(root):
+    # if not root:
+    #     return
+    # return max(maximum_node(root.left_node), maximum_node(root.right_node), root.data)
     max = 0
     if root:
         root_data = root.data
