@@ -36,7 +36,7 @@ def fastLongestPalindromes(seq):
         # to the edge of the last palindrome.
         s = len(l) - 2
         e = s - palLen
-        for j in xrange(s, e, -1):
+        for j in range(s, e, -1):
             # d is the value l[j] must have in order for the
             # palindrome centered there to share the left edge with
             # the last palindrome.  (Drawing it out is helpful to
@@ -85,7 +85,7 @@ def fastLongestPalindromes(seq):
     lLen = len(l)
     s = lLen - 2
     e = s - (2 * seqLen + 1 - lLen)
-    for i in xrange(s, e, -1):
+    for i in range(s, e, -1):
         # The d here uses the same formula as the d in the inner loop
         # above.  (Computes distance to left edge of the last
         # palindrome.)

@@ -18,7 +18,7 @@ def subsequenceDP(nums):
             if nums[i] > nums[j]:
                 tmp = max(tmp, dp[j])
         dp[i] = tmp+1
-    print dp
+    print(dp)
     return max(dp)
 
 
@@ -30,6 +30,6 @@ if __name__ == '__main__':
     # inp =[1,3,6,7,9,4,10,5,6]
     c = [0]
     subsequence(inp, 0, [], c)
-    print c[0]
+    print (c[0])
 
-    print subsequenceDP(inp)
+    print(subsequenceDP(inp))
