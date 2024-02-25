@@ -42,6 +42,6 @@ if __name__ == "__main__":
     bTree.left_node.right_node = TreeNode(5)
     bTree.left_node.left_node.left_node = TreeNode(12)
 
-    print "Height using recursion: ", height_using_recursion(bTree)
+    print("Height using recursion: ", height_using_recursion(bTree))
 
-    print "Height without using recursion: ", height_without_recursion(bTree)
+    print("Height without using recursion: ", height_without_recursion(bTree))

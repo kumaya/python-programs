@@ -12,73 +12,92 @@ class Node(object):
         self.data = val
         self.left = None
         self.right = None
-        self.horizontal_dist = 0
+
+class ModifiedNode(object):
+    def __init__(self, Node, distance) -> None:
+        self.node = Node
+        self.distance = distance
 
 
-def top_view_of_tree(root):
+def topViewIterative(root):
     if not root:
         return
-    Q = []
-    hd_dict = {}
-    Q.append(root)
-    while len(Q):
-        node = Q.pop(0)
-        if node.horizontal_dist not in hd_dict:
-            hd_dict[node.horizontal_dist] = node.data
-        if node.left:
-            node.left.horizontal_dist = node.horizontal_dist - 1
-            Q.append(node.left)
-        if node.right:
-            node.right.horizontal_dist = node.horizontal_dist + 1
-            Q.append(node.right)
-    for k in sorted(hd_dict):
-        print hd_dict[k],
-    print ""
+    res = list()
+    map = dict()
+    queue = list()
+    queue.append(ModifiedNode(root, 0))
+    while len(queue) > 0:
+        temp = queue.pop(0)
+        if temp.distance not in map:
+            map[temp.distance] = temp.node.data
+        if temp.node.left:
+            queue.append(ModifiedNode(temp.node.left, temp.distance-1))
+        if temp.node.right:
+            queue.append(ModifiedNode(temp.node.right, temp.distance+1))
+    for k in sorted(map):
+        res.append(map[k])
+    return res
 
-
-def topViewRecursion(root, height, hd, globalMap):
+def topViewRec(root, level, distance, map):
     if not root:
         return
-    if globalMap.get(hd, None) is None:
-        globalMap[hd] = [root.data, height]
+    # res is a map; where key = distance, val = [node.val, level]
+    if map.get(distance, None) is None:
+        map[distance] = [root.data, level]
     else:
-        if globalMap[hd][1] > height:
-            globalMap[hd] = [root.data, height]
-    topViewRecursion(root.left, height+1, hd-1, globalMap)
-    topViewRecursion(root.right, height+1, hd+1, globalMap)
+        if map[distance][1] > level:
+             map[distance] = [root.data, level]
+    topViewRec(root.left, level+1, distance-1, map)
+    topViewRec(root.right, level+1, distance+1, map)
 
-
-def bottom_view_of_tree(root):
+def bottomViewRec(root, level, distance, map):
     if not root:
         return
-    Q = []
-    hd_dict = {}
-    Q.append(root)
-    while len(Q):
-        node = Q.pop(0)
-        hd_dict[node.horizontal_dist] = node.data
-
-        if node.left:
-            node.left.horizontal_dist = node.horizontal_dist - 1
-            Q.append(node.left)
-        if node.right:
-            node.right.horizontal_dist = node.horizontal_dist + 1
-            Q.append(node.right)
-    for k in sorted(hd_dict):
-        print hd_dict[k],
-    print ""
-
-
-def bottomViewRecursion(root, height, hd, globalMap):
-    if not root:
-        return
-    if globalMap.get(hd, None) is None:
-        globalMap[hd] = [root.data, height]
+    if map.get(distance, None) is None:
+        map[distance] = [root.data, level]
     else:
-        if globalMap[hd][1] < height:
-            globalMap[hd] = [root.data, height]
-    bottomViewRecursion(root.left, height+1, hd-1, globalMap)
-    bottomViewRecursion(root.right, height+1, hd+1, globalMap)
+        if map[distance][1] < level:
+            map[distance] = [root.data, level]
+    bottomViewRec(root.left, level+1, distance-1, map)
+    bottomViewRec(root.right, level+1, distance+1, map)
+
+def bottomViewIterative(root):
+    if not root:
+        return
+    res = list()
+    queue = list()
+    map = dict()
+    queue.append(ModifiedNode(root, 0))
+    while len(queue) > 0:
+        temp = queue.pop(0)
+        map[temp.distance] = temp.node.data
+        if temp.node.left:
+            queue.append(ModifiedNode(temp.node.left, temp.distance-1)) 
+        if temp.node.right:
+            queue.append(ModifiedNode(temp.node.right, temp.distance+1))
+    for k in sorted(map):
+        res.append(map[k])
+    return res
+    
+# def bottom_view_of_tree(root):
+    # if not root:
+    #     return
+    # Q = []
+    # hd_dict = {}
+    # Q.append(root)
+    # while len(Q):
+    #     node = Q.pop(0)
+    #     hd_dict[node.horizontal_dist] = node.data
+
+    #     if node.left:
+    #         node.left.horizontal_dist = node.horizontal_dist - 1
+    #         Q.append(node.left)
+    #     if node.right:
+    #         node.right.horizontal_dist = node.horizontal_dist + 1
+    #         Q.append(node.right)
+    # for k in sorted(hd_dict):
+    #     print hd_dict[k],
+    # print ""
 
 
 if __name__ == '__main__':
@@ -91,22 +110,27 @@ if __name__ == '__main__':
     root.left.right.right = Node(14)
     root.right.right = Node(25)
 
-    print "Top view of a tree"
-    top_view_of_tree(root)
+    print("top view iterative", end=" ")
+    print(topViewIterative(root))
+    print("*"*40)
 
-    print "Top view of a tree recursion"
+    print("Top view recursive", end=" ")
     map = dict()
-    topViewRecursion(root, 0, 0, map)
-    print map
-    for i in sorted(map.items()):
-        print i[1][0],
-    print ""
+    topViewRec(root, 0, 0, map)
+    # print(map)
+    for k in sorted(map):
+        print(map[k][0], end=" ")
+    print()
+    print("*"*40)
 
-    print "Bottom view of a tree"
-    bottom_view_of_tree(root)
-    print "Bottom view of a tree recursion"
+    print("bottom view iterative", end=" ")
+    print(bottomViewIterative(root))
+    print("*"*40)
+
+    print("Bottom view of a tree recursive", end=" ")
     map = dict()
-    bottomViewRecursion(root, 0, 0, map)
-    for i in sorted(map.items()):
-        print i[1][0],
-    print ""
+    bottomViewRec(root, 0, 0, map)
+    # print(map)
+    for k in sorted(map):
+        print(map[k][0], end=" ")
+    print()

@@ -78,9 +78,9 @@ if __name__ == '__main__':
 
     cycle = g.has_cycle()
     if cycle:
-        print "Cyclic"
+        print("Cyclic")
     else:
-        print "Acyclic"
+        print("Acyclic")
 
     g = GraphNew(6)
     g.add_edge(1, 0)
@@ -97,4 +97,4 @@ if __name__ == '__main__':
     g = GraphNew(2)
     g.add_edge(1, 0)
     g.add_edge(0, 1)
-    print g.is_cyclic()
+    print(g.is_cyclic())

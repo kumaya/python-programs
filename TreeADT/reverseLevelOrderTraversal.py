@@ -27,7 +27,7 @@ def reverseLevelOrderTraversal(root):
 
     while len(S) > 0:
         root = S.pop()
-        print root.data,
+        print(root.data, end=" ")
 
 
 def printNode(root, l):
@@ -36,7 +36,7 @@ def printNode(root, l):
     printNode(root.left_node, l-1)
     printNode(root.right_node, l-1)
     if l == 0:
-        print root.data,
+        print(root.data, end=" ")
 
 
 def reverseLevelOrderRecursion(root):
@@ -44,31 +44,12 @@ def reverseLevelOrderRecursion(root):
         return
     else:
         h = height_using_recursion(root)
-        print "Forward: ",
+        print("\nForward: ", end=" ")
         for i in range(h):
             printNode(root, i)
-        print "\nReverse: ",
+        print("\nReverse: ", end=" ")
         for i in range(h, -1, -1):
             printNode(root, i)
-        print "\nSpiral: ",
-        flag = False
-        for i in range(h):
-            printSpiral(root, i, flag)
-            flag = not flag
-
-
-def printSpiral(node, level, flag):
-    if not node:
-        return
-    if level == 0:
-        print node.data,
-    elif level > 0:
-        if flag:
-            printSpiral(node.left_node, level - 1, flag)
-            printSpiral(node.right_node, level - 1, flag)
-        else:
-            printSpiral(node.right_node, level - 1, flag)
-            printSpiral(node.left_node, level - 1, flag)
 
 
 if __name__ == "__main__":
@@ -80,9 +61,9 @@ if __name__ == "__main__":
     bTree.right_node.left_node = TreeNode(6)
     bTree.left_node.left_node.left_node = TreeNode(12)
 
-    print "Reverse Level order traversal: ",
+    print("Reverse Level order traversal: ", end=" ")
     reverseLevelOrderTraversal(bTree)
-    print ""
-    print "*"*80
-    print "Reverse level order using recursion: "
+    print()
+    print("*"*80)
+    print("Reverse level order using recursion: ", end=" ")
     reverseLevelOrderRecursion(bTree)

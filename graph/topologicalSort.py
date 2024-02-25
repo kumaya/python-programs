@@ -33,7 +33,7 @@ class Graph(object):
         for i in range(self.vertices):
             if indegrees[i] == 0:
                 queue.append(i)
-        print indegrees, queue
+        print(indegrees, queue)
         res = []
         while len(queue) > 0:
             rem = queue.pop(0)
@@ -61,5 +61,5 @@ if __name__ == '__main__':
     g.add_edge(1, 3)
     g.add_edge(4, 3)
 
-    print g.topological_sort_dfs()
-    print g.topological_sort_bfs()
+    print(g.topological_sort_dfs())
+    print(g.topological_sort_bfs())

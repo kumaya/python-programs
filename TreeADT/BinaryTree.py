@@ -48,14 +48,14 @@ class BinaryTree(object):
                 raise AttributeError
             else:
                 if value == root.data:
-                    print "Found"
+                    print("Found")
                 else:
                     if root.data <= value:
                         self.search(root.left_node, value)
                     else:
                         self.search(root.right_node, value)
         except (KeyError, AttributeError):
-            print "Not found."
+            print("Not found.")
 
     def depth(self, root_node):
         if not root_node:
@@ -76,10 +76,10 @@ class BinaryTree(object):
             else:
                 depth += 1
                 BinaryTree.print_tree(root_node.left_node, depth)
-                print root_node.data,
+                print(root_node.data, end=" ")
                 BinaryTree.print_tree(root_node.right_node, depth)
         except (KeyError, AttributeError):
-            print "Root value not found"
+            print("Root value not found")
 
 
 if __name__ == "__main__":
@@ -89,17 +89,17 @@ if __name__ == "__main__":
     bTree.insert(root, 3)
     bTree.insert(root, 4)
     bTree.insert(root, 5)
-    print "Printing Binary tree: "
+    print("Printing Binary tree: ")
     BinaryTree.print_tree(root)
 
-    print ""
-    print "*"*80
+    print()
+    print("*"*80)
     val = 510
-    print "Searching value %d in the tree:" % val,
+    print("Searching value %d in the tree:" % val, end=" ")
     bTree.search(root, val)
     val = 4
-    print "Searching value %d in the tree:" % val,
+    print("Searching value %d in the tree:" % val, end=" ")
     bTree.search(root, val)
 
-    print "*"*80
-    print "Maximum depth of tree: ", bTree.depth(root)
+    print("*"*80)
+    print("Maximum depth of tree: ", bTree.depth(root))
