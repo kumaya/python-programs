@@ -11,6 +11,25 @@ class Graph(object):
         # undirected graph
         self.graph[u].append((v, weight))
         self.graph[v].append((u, weight))
+    
+    def dijkstra2(self, src):
+        res = defaultdict(list)
+        visited = [False]*self.vertices
+        mh = list()
+        heapq.heapify(mh)
+        heapq.heappush(mh, (0, src, ""+str(src)))
+        while mh:
+            distance, vertex, path = heapq.heappop(mh)
+            if not visited[vertex]:
+                visited[vertex] = True
+                res[vertex] = [distance, path]
+                for nei in self.graph[vertex]:
+                    if not visited[nei[0]]:
+                        heapq.heappush(mh, (distance+nei[1], nei[0], path+str(nei[0])))
+        
+        print("Vertex\tDistance\tPathFromSrc")
+        for key, val in res.items():
+            print(key, "\t\t ", val[0], "\t\t\t", val[1])
 
     def dijkstra(self, src):
         vd = namedtuple("vertexPath", ["vertex", "pathFromSrc"])
@@ -29,9 +48,9 @@ class Graph(object):
                     if not visited[neighbour[0]]:
                         heapq.heappush(minHeap, (distance+neighbour[1], vd(vertex=neighbour[0], pathFromSrc=pair.pathFromSrc+str(neighbour[0]))))
 
-        print "Vertex\tDistance\tPathFromSrc"
+        print("Vertex\tDistance\tPathFromSrc")
         for key, val in res.items():
-            print key, "\t\t ", val[0], "\t\t\t", val[1]
+            print(key, "\t\t ", val[0], "\t\t\t", val[1])
 
 
 if __name__ == '__main__':
@@ -51,3 +70,4 @@ if __name__ == '__main__':
     g.add_edge(6, 8, 6)
     g.add_edge(7, 8, 7)
     g.dijkstra(0)
+    g.dijkstra2(0)

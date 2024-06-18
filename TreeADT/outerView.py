@@ -8,7 +8,7 @@
   2      3
 4  5   9   11
     6    10
-  7  8
+  7  8  12
 """
 
 
@@ -66,7 +66,6 @@ def outer_view(r):
         # print right view - already covered nodes
         right_view(r, 0, [-1], outer_nodes)
 
-
 if __name__ == '__main__':
     root = Node(1)
     root.left = Node(2)
@@ -78,6 +77,7 @@ if __name__ == '__main__':
     root.right = Node(3)
     root.right.left = Node(9)
     root.right.left.right = Node(10)
+    root.right.left.right.left = Node(12)
     root.right.right = Node(11)
     # root = Node(20)
     # root.left = Node(8)
